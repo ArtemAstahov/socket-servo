@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>socket-servo | jack vial</title>
+</head>
+<body>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+	<script>
+
+  var socket = io.connect('http://localhost:3000');
+  
+/*
+  socket.on('news', function (data) {
+
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+
+  });
+*/
+
+   $(document).ready(function(){
+   	//Use these kind of event handlers to send other data from buttons and such to the server
+    $('#text').keypress(function(e){
+
+      socket.emit('client_data', {'letter': String.fromCharCode(e.charCode)});
+
+    });
+  });
+</script>
+<h1>socket-servo</h1>
+<textarea id="text" placeholder="type a letter and be amazed!"></textarea>
+<h4>Commands</h4>
+<ul>
+	<li>servo.center() == w</li>
+	<li>servo.min() == a</li>
+	<li>servo.max() == d</li>
+</ul>
+</body>
+</html>
