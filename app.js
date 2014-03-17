@@ -34,18 +34,23 @@ io.sockets.on('connection', function (socket) {
 */
 
   //recieve client data
-  socket.on('client_data', function(data){
-    process.stdout.write(data.letter);
 
-    arduino.controls(data.letter);
+  //Recieves click handler data from client and passes it too the arduino module
+  socket.on('button_max', function(data){
+    console.log(data.max);
+    arduino.buttons(data.max);
 
   });
 
-    //recieve client data
-  socket.on('button_max', function(data){
-   // process.stdout.write(data.max);
-    console.log(data.max);
-    arduino.buttons(data.max);
+  socket.on('button_min', function(data){
+    console.log(data.min);
+    arduino.buttons(data.min);
+
+  });
+
+  socket.on('button_center', function(data){
+    console.log(data.center);
+    arduino.buttons(data.center);
 
   });
 });

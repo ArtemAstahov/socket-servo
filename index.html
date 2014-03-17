@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>socket-servo | jack vial</title>
+	<title>Socket-Servo | Jack Vial</title>
 </head>
 <body>
 	<script src="/socket.io/socket.io.js"></script>
@@ -21,27 +21,30 @@
 
    $(document).ready(function(){
    	//Use these kind of event handlers to send other data from buttons and such to the server
-    $('#text').keypress(function(e){
-
-      socket.emit('client_data', {'letter': String.fromCharCode(e.charCode)});
-
-    });
-
+ 
+    //Click handlers
      $('#max').on("click", {'name':'max'},function(event){
 
       socket.emit('button_max', {'max': event.data.name});
 
     });
+
+      $('#min').on("click", {'name':'min'},function(event){
+
+      socket.emit('button_min', {'min': event.data.name});
+
+    });
+
+     $('#center').on("click", {'name':'center'},function(event){
+
+      socket.emit('button_center', {'center': event.data.name});
+
+    });
+
   });
 </script>
 <h1>socket-servo</h1>
-<textarea id="text" placeholder="type a letter and be amazed!"></textarea>
-<h4>Commands</h4>
-<ul>
-	<li>servo.center() == w</li>
-	<li>servo.min() == a</li>
-	<li>servo.max() == d</li>
-</ul>
+<h4>Controls</h4>
 <ul>
   <li><input id="max" type="submit" value="max"></li>
   <li><input id="min" type="submit" value="min"></li>

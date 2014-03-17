@@ -27,24 +27,20 @@ board.on("ready", function() {
 
 });
 
-exports.controls = function(clientInput){
 
-	if(clientInput === "d"){
-        myServo.max();
-      }
-     else if(clientInput === "w"){
-        myServo.center();
-      }
-     else if(clientInput === "a"){
-        myServo.min();
-      }
-}
-
+//Control servo with buttons
 exports.buttons = function(data){
 
-  if(data === 'max'){
-        myServo.max();
-   
-}
+  switch(data) {
+    case "max":
+      myServo.max();
+      break;
+    case "min": 
+      myServo.min();
+      break;
+    case "center": 
+      myServo.center();
+      break;
+  }
 
 }
