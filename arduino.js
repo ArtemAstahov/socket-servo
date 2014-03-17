@@ -39,3 +39,12 @@ exports.controls = function(clientInput){
         myServo.min();
       }
 }
+
+exports.buttons = function(data){
+
+  if(data === 'max'){
+        myServo.max();
+   
+}
+
+}

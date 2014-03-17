@@ -26,6 +26,12 @@
       socket.emit('client_data', {'letter': String.fromCharCode(e.charCode)});
 
     });
+
+     $('#max').on("click", {'name':'max'},function(event){
+
+      socket.emit('button_max', {'max': event.data.name});
+
+    });
   });
 </script>
 <h1>socket-servo</h1>
@@ -35,6 +41,11 @@
 	<li>servo.center() == w</li>
 	<li>servo.min() == a</li>
 	<li>servo.max() == d</li>
+</ul>
+<ul>
+  <li><input id="max" type="submit" value="max"></li>
+  <li><input id="min" type="submit" value="min"></li>
+  <li><input id="center" type="submit" value="center"></li>
 </ul>
 </body>
 </html>

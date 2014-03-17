@@ -40,6 +40,14 @@ io.sockets.on('connection', function (socket) {
     arduino.controls(data.letter);
 
   });
+
+    //recieve client data
+  socket.on('button_max', function(data){
+   // process.stdout.write(data.max);
+    console.log(data.max);
+    arduino.buttons(data.max);
+
+  });
 });
 
 
