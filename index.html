@@ -1,41 +1,45 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Socket-Servo | Jack Vial</title>
-</head>
-<body>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Socket-Servo | Jack Vial</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css">
+  </head>
+<body> 
+  <div class="container">
+    <h1>Socket-Servo</h1>
+    <h4>Controls</h4>
+    <ul>
+      <li><input id="max" type="submit" value="max"></li>
+      <li><input id="min" type="submit" value="min"></li>
+      <li><input id="center" type="submit" value="center"></li>
+    </ul>
+  </div>
   <script>
-  //localhost must be changed to the web server's IP address in production
-  var socket = io.connect('http://localhost:3000');
-  
-
    $(document).ready(function(){
 
-  //Reusable function for handling an routing click events
-  function button_pressed(_id){
-    //Listen for click events on the given _id
-    $('#'+_id).on("click", {'name': _id }, function(event){
-      //emit the event to the server and pass the value stored in name
-      socket.emit(_id, {btn : event.data.name});
-      //for debugging
-      console.log(_id);
-    });
-  }
+      //localhost must be changed to the web server's IP address in production
+      var socket = io.connect('http://localhost:3000');
 
-  button_pressed('max');
-  button_pressed('min');
-  button_pressed('center');
+      //Reusable function for handling an routing click events
+      function click_emit(eventId){
+        //Listen for click events on the given eventId
+        $('#'+eventId).on("click", {'name': eventId }, function(event){
+          //emit the event to the server and pass the value stored in name
+          socket.emit(eventId, {btn : event.data.name});
+          //for debugging
+          console.log(eventId);
+        });
+      }
+
+      click_emit('max');
+      click_emit('min');
+      click_emit('center');
 
   });
 </script>
-<h1>socket-servo</h1>
-<h4>Controls</h4>
-<ul>
-  <li><input id="max" type="submit" value="max"></li>
-  <li><input id="min" type="submit" value="min"></li>
-  <li><input id="center" type="submit" value="center"></li>
-</ul>
+<script src="/socket.io/socket.io.js"></script>
 </body>
 </html>

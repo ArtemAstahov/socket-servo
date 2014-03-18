@@ -1,61 +1,35 @@
-var app = require('http').createServer(handler), 
-    io = require('socket.io').listen(app), 
-    fs = require('fs');
+var express = require('express')
+  , arduino = require("./arduino.js")
+  , http = require('http');
+ 
+var app = express();
+//Start listening on port 3000
+var server = app.listen(3000);
+var io = require('socket.io').listen(server);
 
-//Custom module
-var arduino = require("./arduino.js");
+app.get('/', function (req, res) {
+  res.sendfile(__dirname + '/index.html');
+});
 
-//Start listening on localhost:3000
-app.listen(3000);
-console.log("Server is listening on port 3000...");
 //Turn off debug statments
 io.set('log level', 1);
 
-function handler (req, res) {
-  fs.readFile(__dirname + '/index.html',
-  function (err, data) {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading index.html');
-    }
+io.sockets.on('connection', function (socket) {
 
-    res.writeHead(200);
-    res.end(data);
+  //Recieves click handler data from client and passes it too the arduino module
+  function click_recieve(eventId){
+
+  socket.on(eventId, function(data){
+    console.log(data.btn);
+    arduino.buttons(data.btn);
+
   });
 }
 
+  click_recieve('min');
+  click_recieve('max');
+  click_recieve('center');
 
-
-io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-
-/*
-  socket.on('my other event', function (data) {
-    console.log(data);
-    });
-*/
-
-  //recieve client data
-
-  //Recieves click handler data from client and passes it too the arduino module
-  socket.on('max', function(data){
-    console.log(data.btn);
-    arduino.buttons(data.btn);
-
-  });
-
-
-  socket.on('min', function(data){
-    console.log(data.btn);
-    arduino.buttons(data.btn);
-
-  });
-
-  socket.on('center', function(data){
-    console.log(data.btn);
-    arduino.buttons(data.btn);
-
-  });
 });
 
 
