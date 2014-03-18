@@ -7,7 +7,7 @@ var arduino = require("./arduino.js");
 
 //Start listening on localhost:3000
 app.listen(3000);
-
+console.log("Server is listening on port 3000...");
 //Turn off debug statments
 io.set('log level', 1);
 
@@ -24,6 +24,8 @@ function handler (req, res) {
   });
 }
 
+
+
 io.sockets.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
 
@@ -36,21 +38,22 @@ io.sockets.on('connection', function (socket) {
   //recieve client data
 
   //Recieves click handler data from client and passes it too the arduino module
-  socket.on('button_max', function(data){
-    console.log(data.max);
-    arduino.buttons(data.max);
+  socket.on('max', function(data){
+    console.log(data.btn);
+    arduino.buttons(data.btn);
 
   });
 
-  socket.on('button_min', function(data){
-    console.log(data.min);
-    arduino.buttons(data.min);
+
+  socket.on('min', function(data){
+    console.log(data.btn);
+    arduino.buttons(data.btn);
 
   });
 
-  socket.on('button_center', function(data){
-    console.log(data.center);
-    arduino.buttons(data.center);
+  socket.on('center', function(data){
+    console.log(data.btn);
+    arduino.buttons(data.btn);
 
   });
 });

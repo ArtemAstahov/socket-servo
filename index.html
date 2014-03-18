@@ -1,45 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Socket-Servo | Jack Vial</title>
+  <title>Socket-Servo | Jack Vial</title>
 </head>
 <body>
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
-	<script>
-
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+  <script>
+  //localhost must be changed to the web server's IP address in production
   var socket = io.connect('http://localhost:3000');
   
-/*
-  socket.on('news', function (data) {
-
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-
-  });
-*/
 
    $(document).ready(function(){
-   	//Use these kind of event handlers to send other data from buttons and such to the server
- 
-    //Click handlers
-     $('#max').on("click", {'name':'max'},function(event){
 
-      socket.emit('button_max', {'max': event.data.name});
-
+  //Reusable function for handling an routing click events
+  function button_pressed(_id){
+    //Listen for click events on the given _id
+    $('#'+_id).on("click", {'name': _id }, function(event){
+      //emit the event to the server and pass the value stored in name
+      socket.emit(_id, {btn : event.data.name});
+      //for debugging
+      console.log(_id);
     });
+  }
 
-      $('#min').on("click", {'name':'min'},function(event){
-
-      socket.emit('button_min', {'min': event.data.name});
-
-    });
-
-     $('#center').on("click", {'name':'center'},function(event){
-
-      socket.emit('button_center', {'center': event.data.name});
-
-    });
+  button_pressed('max');
+  button_pressed('min');
+  button_pressed('center');
 
   });
 </script>

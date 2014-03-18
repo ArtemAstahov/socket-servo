@@ -42,5 +42,4 @@ exports.buttons = function(data){
       myServo.center();
       break;
   }
-
 }
