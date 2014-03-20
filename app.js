@@ -1,15 +1,22 @@
-var express = require('express')
-  , arduino = require("./arduino.js")
-  , http = require('http');
- 
-var app = express();
-//Start listening on port 3000
-var server = app.listen(3000);
-var io = require('socket.io').listen(server);
+// set up ======================================================================
 
-app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
-});
+var express = require('express');
+var arduino = require("./arduino.js");
+var http = require('http');
+var port = process.env.PORT || 3000; 
+var app = express();
+
+// configuration ===============================================================
+
+
+
+// routes ======================================================================
+
+require('./app/routes.js')(app);
+
+//Start listening on port 3000
+var server = app.listen(port);
+var io = require('socket.io').listen(server);
 
 //Turn off debug statments
 io.set('log level', 1);

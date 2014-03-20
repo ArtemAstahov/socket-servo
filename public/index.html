@@ -17,8 +17,10 @@
       <li><input id="center" type="submit" value="center"></li>
     </ul>
   </div>
-  <script>
-   $(document).ready(function(){
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+     $(document).ready(function(){
 
       //localhost must be changed to the web server's IP address in production
       var socket = io.connect('http://localhost:3000');
@@ -40,6 +42,5 @@
 
   });
 </script>
-<script src="/socket.io/socket.io.js"></script>
 </body>
 </html>
