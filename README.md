@@ -1,4 +1,4 @@
-Johnny Five is alive!
+Socket-Servo is alive!
 =====================
 
 Contorl a servo from a web page using an Arduino, johnny-five library 
