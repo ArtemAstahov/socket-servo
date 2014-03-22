@@ -1,4 +1,5 @@
-Johnny Five is alive! 
+Johnny Five is alive!
+=====================
 
 Contorl a servo from a web page using an Arduino, johnny-five library 
 for node.js and socket.io for realtime communication with the server 
@@ -12,5 +13,6 @@ and communicating with an Arduino running johnny-five.
 
 Buttons, sliders, touch support and much more coming soon. 
 
-
-17/03/2014 - Added buttons for min, max and center
+Change log
+-------------
+* 17/03/2014 - Added buttons for min, max and center
