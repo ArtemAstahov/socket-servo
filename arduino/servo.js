@@ -10,26 +10,17 @@ board.on("ready", function() {
 
 //Create a new servo object and set pin 9 as the input
   myServo = new five.Servo(9);
-/*
-  board.repl.inject({
-    servo: myServo
-  });
 
- myServo.sweep();
-*/
 //Center the servo on startup after 2 seconds
   this.wait(2000, function(){
     myServo.stop();
     myServo.center();
   });
 
-  
-
 });
 
-
 //Control servo with buttons
-exports.buttons = function(data){
+exports.controls = function(data){
 
   switch(data) {
     case "max":

@@ -1,7 +1,8 @@
 // set up ======================================================================
 
 var express = require('express');
-var arduino = require("./arduino.js");
+var five = require("johnny-five");
+var servo = require("./arduino/servo.js");
 var http = require('http');
 var port = process.env.PORT || 3000; 
 var app = express();
@@ -24,12 +25,12 @@ io.set('log level', 1);
 
 io.sockets.on('connection', function (socket) {
 
-  //Recieves click handler data from client and passes it too the arduino module
+  //Recieves click handler data from client and passes it too the arduino/servo.js module
   function click_recieve(eventId){
 
   socket.on(eventId, function(data){
     console.log(data.btn);
-    arduino.buttons(data.btn);
+    servo.controls(data.btn);
 
   });
 }
