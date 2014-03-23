@@ -11,11 +11,13 @@
   <div class="container">
     <h1>Socket-Servo</h1>
     <h4>Controls</h4>
-    <ul>
-      <li><input id="max" type="submit" value="max"></li>
-      <li><input id="min" type="submit" value="min"></li>
-      <li><input id="center" type="submit" value="center"></li>
-    </ul>
+
+    <div class="btn-group">
+      <button id="min" type="button" class="btn btn-default">Min</button>
+      <button id="center" type="button" class="btn btn-default">Center</button>
+      <button id="max" type="button" class="btn btn-default">Max</button>
+    </div>
+    
   </div>
 
 <script src="/socket.io/socket.io.js"></script>
