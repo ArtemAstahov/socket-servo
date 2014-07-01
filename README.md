@@ -1,5 +1,5 @@
-Socket-Servo is alive!
-=====================
+Socket-Servo
+============
 
 Contorl a servo from a web page using an Arduino, johnny-five library 
 for node.js and socket.io for realtime communication with the server 
