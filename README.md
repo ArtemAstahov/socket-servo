@@ -11,7 +11,7 @@ http://node-ardx.org/exercises/4
 The goal of this project is to create a modular front-end for controlling
 and communicating with an Arduino running johnny-five.
 
-Buttons, sliders, touch support and much more coming soon. 
+Buttons, sliders, touch support and much more coming soon...
 
 Change log
 -------------
